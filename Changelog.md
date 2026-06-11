@@ -1,6 +1,11 @@
 # Changelog
 
-## [Unversioned] (Place WIP changes in this section until a release is done)
+## [Unreleased] (Place WIP changes in this section until a release is done)
+
+## [4.11.2] 2026-06-11
+
+- [c64] Fix compilation of broken host_prefix code by using malloc
+- [all] Add logic to build to use the tagged version number in release build directly or git hash
 
 ## [4.11.1] 2026-06-11
 

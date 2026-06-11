@@ -30,15 +30,6 @@ the built library to pickup.
 
 ## Releasing a new version of the library
 
-### Update the version number
-
-Update the version number in the `version.txt` file.
-
-For example:
-```
-4.9.0
-```
-
 ### Update the changelog
 
 Update the changelog in the `CHANGELOG.md` file.
@@ -52,8 +43,9 @@ described below.
 
 ### Tag the release
 
-**WARNING - VALIDATE THAT THE FILE [version.txt](version.txt) CONTAINS THE NEW VERSION NUMBER AS DETAILED ABOVE**
-**OTHERWISE THE RELEASE FILES WILL HAVE THE WRONG VERSION ASSOCIATED WITH THEM**
+Release artifact names are derived from the git tag when the build runs on a clean
+checkout at that tag (for example tag `v4.9.0` produces version `4.9.0` in zip and
+library filenames). Builds from other commits use the short git hash instead.
 
 The new release can be done with the gitlab automated workflow.
 To trigger it, tag the release with a version and push the tag to the remote.
