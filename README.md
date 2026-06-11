@@ -13,20 +13,9 @@ If required, specify `TARGETS` list.
 ```shell
 $ make clean
 $ make release
+$ make TARGETS=atari release
+$ make TARGETS="c64 atari" release
 ```
-
-## Adding additional build flags to local release
-
-Edit the `application.mk` and add any options you need to build a release with additional flags.
-The `hd` function (for hex dumping) is guarded by the `FN_LIB_DEBUG` define.
-
-```makefile
-# CFLAGS += -DFN_LIB_DEBUG
-```
-
-This is not enabled by default, so release libraries will not contain the hd function.
-If you are doing local testing, this is the place to add custom CFLAGS or ASMFLAGS for
-the built library to pickup.
 
 ## Releasing a new version of the library
 
@@ -57,6 +46,50 @@ the gitlab repository, and have permissions to push tags.
 git tag vX.Y.Z
 git push upstream vX.Y.Z
 ```
+
+### Version string
+
+This is advanced usage if you're producing local versions of fujinet-lib library and
+require specific version names.
+
+The `release` build will use either the latest tag name (if this is also the current commit)
+or the short commit hash string if locally there is a commit without the latest tag on it
+(adding "-dirty" if you have uncommit changes).
+
+```shell
+❯ make TARGETS="c64 msdos" release
+# ...
+
+❯ ll dist
+Permissions Size User  Date Modified Name
+.rw-r--r--   59k markf 11 Jun 16:29   fujinet-lib-c64-45c687eb-dirty.zip
+.rw-r--r--   29k markf 11 Jun 16:29   fujinet-lib-msdos-45c687eb-dirty.zip
+```
+
+To build with a specific version string in the files instead of the hash, specify the VERSION_STRING
+env directly (along with any other env values, like the TARGETS if you wish to only build limited set):
+```shell
+❯ make VERSION_STRING=v4.11.3 TARGETS="c64 msdos" release
+# ...
+
+❯ ll dist
+Permissions Size User  Date Modified Name
+.rw-r--r--   59k markf 11 Jun 16:28   fujinet-lib-c64-v4.11.3.zip
+.rw-r--r--   29k markf 11 Jun 16:28   fujinet-lib-msdos-v4.11.3.zip
+```
+
+## Adding additional build flags to local release
+
+Edit the `application.mk` and add any options you need to build a release with additional flags.
+The `hd` function (for hex dumping) is guarded by the `FN_LIB_DEBUG` define.
+
+```makefile
+# CFLAGS += -DFN_LIB_DEBUG
+```
+
+This is not enabled by default, so release libraries will not contain the hd function.
+If you are doing local testing, this is the place to add custom CFLAGS or ASMFLAGS for
+the built library to pickup.
 
 ## Testing
 
