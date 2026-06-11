@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unversioned] (Place WIP changes in this section until a release is done)
+
+## [4.11.1] 2026-06-11
+
+- Version bump to fix the released files having wrong version number in 4.11.0
+
 ## [4.11.0] 2026-06-08
 
 - [vic20] Add vic20 target (Thom Cherryhomes)

@@ -52,7 +52,10 @@ described below.
 
 ### Tag the release
 
-This can be done with the gitlab automated workflow.
+**WARNING - VALIDATE THAT THE FILE [version.txt](version.txt) CONTAINS THE NEW VERSION NUMBER AS DETAILED ABOVE**
+**OTHERWISE THE RELEASE FILES WILL HAVE THE WRONG VERSION ASSOCIATED WITH THEM**
+
+The new release can be done with the gitlab automated workflow.
 To trigger it, tag the release with a version and push the tag to the remote.
 
 Note, for the following to work, you must have a git remote named "upstream" pointing to
